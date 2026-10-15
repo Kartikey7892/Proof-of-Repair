@@ -1,0 +1,565 @@
+{
+ "canonical": [
+  {
+   "input": {
+    "b": 1,
+    "a": [
+     3,
+     2,
+     1
+    ],
+    "c": {
+     "z": null,
+     "y": true,
+     "x": false
+    }
+   },
+   "python": "{\"a\":[3,2,1],\"b\":1,\"c\":{\"x\":false,\"y\":true,\"z\":null}}"
+  },
+  {
+   "input": {
+    "text": "Café ✓ naïve — 東京 🚗",
+    "ctrl": "tab\there\nnl\r\u0001",
+    "q": "say \"hi\" \\ ok"
+   },
+   "python": "{\"ctrl\":\"tab\\there\\nnl\\r\\u0001\\u007f\",\"q\":\"say \\\"hi\\\" \\\\ ok\",\"text\":\"Caf\\u00e9 \\u2713 na\\u00efve \\u2014 \\u6771\\u4eac \\ud83d\\ude97\"}"
+  },
+  {
+   "input": {
+    "floats": [
+     0.1,
+     0.7,
+     1.5,
+     123.456,
+     1e-05,
+     0.0001,
+     1e+16,
+     1.5e+16,
+     1234567890123456.8,
+     -0.25
+    ]
+   },
+   "python": "{\"floats\":[0.1,0.7,1.5,123.456,1e-05,0.0001,1e+16,1.5e+16,1234567890123456.8,-0.25]}"
+  },
+  {
+   "input": {
+    "ints": [
+     0,
+     -1,
+     98000,
+     9007199254740991
+    ]
+   },
+   "python": "{\"ints\":[0,-1,98000,9007199254740991]}"
+  },
+  {
+   "input": {
+    "empty_obj": {},
+    "empty_list": [],
+    "empty_str": ""
+   },
+   "python": "{\"empty_list\":[],\"empty_obj\":{},\"empty_str\":\"\"}"
+  }
+ ],
+ "indent2": [
+  {
+   "input": {
+    "b": 1,
+    "a": [
+     3,
+     2,
+     1
+    ],
+    "c": {
+     "z": null,
+     "y": true,
+     "x": false
+    }
+   },
+   "python": "{\n  \"a\": [\n    3,\n    2,\n    1\n  ],\n  \"b\": 1,\n  \"c\": {\n    \"x\": false,\n    \"y\": true,\n    \"z\": null\n  }\n}"
+  },
+  {
+   "input": {
+    "text": "Café ✓ naïve — 東京 🚗",
+    "ctrl": "tab\there\nnl\r\u0001",
+    "q": "say \"hi\" \\ ok"
+   },
+   "python": "{\n  \"ctrl\": \"tab\\there\\nnl\\r\\u0001\\u007f\",\n  \"q\": \"say \\\"hi\\\" \\\\ ok\",\n  \"text\": \"Caf\\u00e9 \\u2713 na\\u00efve \\u2014 \\u6771\\u4eac \\ud83d\\ude97\"\n}"
+  }
+ ],
+ "proofs": [
+  {
+   "proof": {
+    "proof_id": "00000000-0000-4000-8000-000000000000",
+    "vin": "1HGBH41JXMN109186",
+    "vehicle": "2016 Honda Civic",
+    "odometer_km": 98000,
+    "event_type": "REPAIR",
+    "issuer_id": "certified-workshop",
+    "timestamp": 1734567890.123456,
+    "report": {
+     "fault_code": "P0420",
+     "diagnosis": "catalyst efficiency below threshold",
+     "severity": "medium",
+     "parts": [
+      "catalytic_converter"
+     ],
+     "repair_steps": [
+      "test O2 sensors",
+      "replace catalyst if needed"
+     ],
+     "qa_checks": [
+      "readiness_monitors_ready"
+     ],
+     "estimated_minutes": 120,
+     "confidence": 0.88,
+     "buyer_advice": "Ask for post-repair emissions proof"
+    },
+    "evidence_cid": "abababababababababababababababababababababababababababababababab",
+    "report_hash": "9f6c574e20152ce2abcc0b80587dc7265ae20583bc4c7e630b8ca233576bf76b",
+    "model": {
+     "model_name": "peft:TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+     "model_version": "vehicle-lora-v2",
+     "adapter_hash": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+     "dataset_merkle_root": "",
+     "framework": "transformers+peft"
+    },
+    "leaf_digest": "87b198c9feccfe387cc94119ba845d4f4feac9b28d313d6c31efc551d2246452",
+    "extra": {
+     "audience": "second_hand_buyer",
+     "engine": "tinyllama"
+    }
+   },
+   "report_canonical": "{\"buyer_advice\":\"Ask for post-repair emissions proof\",\"confidence\":0.88,\"diagnosis\":\"catalyst efficiency below threshold\",\"estimated_minutes\":120,\"fault_code\":\"P0420\",\"parts\":[\"catalytic_converter\"],\"qa_checks\":[\"readiness_monitors_ready\"],\"repair_steps\":[\"test O2 sensors\",\"replace catalyst if needed\"],\"severity\":\"medium\"}",
+   "leaf_payload_canonical": "{\"event_type\":\"REPAIR\",\"evidence_cid\":\"abababababababababababababababababababababababababababababababab\",\"extra\":{\"audience\":\"second_hand_buyer\",\"engine\":\"tinyllama\"},\"issuer_id\":\"certified-workshop\",\"model\":{\"adapter_hash\":\"cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"dataset_merkle_root\":\"\",\"framework\":\"transformers+peft\",\"model_name\":\"peft:TinyLlama/TinyLlama-1.1B-Chat-v1.0\",\"model_version\":\"vehicle-lora-v2\"},\"odometer_km\":98000,\"proof_id\":\"00000000-0000-4000-8000-000000000000\",\"report_hash\":\"9f6c574e20152ce2abcc0b80587dc7265ae20583bc4c7e630b8ca233576bf76b\",\"timestamp\":1734567890.123456,\"vehicle\":\"2016 Honda Civic\",\"vin\":\"1HGBH41JXMN109186\"}"
+  },
+  {
+   "proof": {
+    "proof_id": "00000000-0000-4000-8000-000000000001",
+    "vin": "1HGBH41JXMN109186",
+    "vehicle": "2016 Honda Civic",
+    "odometer_km": 98001,
+    "event_type": "REPAIR",
+    "issuer_id": "certified-workshop",
+    "timestamp": 1700000000.0,
+    "report": {
+     "fault_code": "C0031",
+     "diagnosis": "ABS wheel-speed circuit — sensor/tone ring",
+     "severity": "high",
+     "parts": [],
+     "repair_steps": [
+      "Scan ABS module"
+     ],
+     "qa_checks": [],
+     "estimated_minutes": 75,
+     "confidence": 1.0,
+     "buyer_advice": ""
+    },
+    "evidence_cid": "abababababababababababababababababababababababababababababababab",
+    "report_hash": "788e1fa106a2b58e26195bc412310a540e2e68208fbf3e40773306ac5cd4aa6a",
+    "model": {
+     "model_name": "peft:TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+     "model_version": "vehicle-lora-v2",
+     "adapter_hash": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+     "dataset_merkle_root": "",
+     "framework": "transformers+peft"
+    },
+    "leaf_digest": "80fb66b604bf48e6faba8d95ee64bd2db90bd45f98a9fa58db024583d91355fe",
+    "extra": {
+     "audience": "second_hand_buyer",
+     "engine": "tinyllama"
+    }
+   },
+   "report_canonical": "{\"buyer_advice\":\"\",\"confidence\":1.0,\"diagnosis\":\"ABS wheel-speed circuit \\u2014 sensor/tone ring\",\"estimated_minutes\":75,\"fault_code\":\"C0031\",\"parts\":[],\"qa_checks\":[],\"repair_steps\":[\"Scan ABS module\"],\"severity\":\"high\"}",
+   "leaf_payload_canonical": "{\"event_type\":\"REPAIR\",\"evidence_cid\":\"abababababababababababababababababababababababababababababababab\",\"extra\":{\"audience\":\"second_hand_buyer\",\"engine\":\"tinyllama\"},\"issuer_id\":\"certified-workshop\",\"model\":{\"adapter_hash\":\"cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"dataset_merkle_root\":\"\",\"framework\":\"transformers+peft\",\"model_name\":\"peft:TinyLlama/TinyLlama-1.1B-Chat-v1.0\",\"model_version\":\"vehicle-lora-v2\"},\"odometer_km\":98001,\"proof_id\":\"00000000-0000-4000-8000-000000000001\",\"report_hash\":\"788e1fa106a2b58e26195bc412310a540e2e68208fbf3e40773306ac5cd4aa6a\",\"timestamp\":1700000000.0,\"vehicle\":\"2016 Honda Civic\",\"vin\":\"1HGBH41JXMN109186\"}"
+  },
+  {
+   "proof": {
+    "proof_id": "00000000-0000-4000-8000-000000000002",
+    "vin": "1HGBH41JXMN109186",
+    "vehicle": "2016 Honda Civic",
+    "odometer_km": 98002,
+    "event_type": "REPAIR",
+    "issuer_id": "certified-workshop",
+    "timestamp": 1760000000.5,
+    "report": {
+     "fault_code": "P0300",
+     "diagnosis": "random misfire",
+     "severity": "low",
+     "parts": [
+      "ignition_coil"
+     ],
+     "repair_steps": [
+      "replace coils"
+     ],
+     "qa_checks": [
+      "no_misfire"
+     ],
+     "estimated_minutes": 60,
+     "confidence": 0.0,
+     "buyer_advice": "Request invoice"
+    },
+    "evidence_cid": "abababababababababababababababababababababababababababababababab",
+    "report_hash": "57df011d49eb93c65037b823b4833bf3a45b165dcdd1ceb519610fd21549d634",
+    "model": {
+     "model_name": "peft:TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+     "model_version": "vehicle-lora-v2",
+     "adapter_hash": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+     "dataset_merkle_root": "",
+     "framework": "transformers+peft"
+    },
+    "leaf_digest": "687fcefecbca890a320aec9fa063a1f7d3c08cbe939d0d4b4d0d7c9506a238b6",
+    "extra": {
+     "audience": "second_hand_buyer",
+     "engine": "tinyllama"
+    }
+   },
+   "report_canonical": "{\"buyer_advice\":\"Request invoice\",\"confidence\":0.0,\"diagnosis\":\"random misfire\",\"estimated_minutes\":60,\"fault_code\":\"P0300\",\"parts\":[\"ignition_coil\"],\"qa_checks\":[\"no_misfire\"],\"repair_steps\":[\"replace coils\"],\"severity\":\"low\"}",
+   "leaf_payload_canonical": "{\"event_type\":\"REPAIR\",\"evidence_cid\":\"abababababababababababababababababababababababababababababababab\",\"extra\":{\"audience\":\"second_hand_buyer\",\"engine\":\"tinyllama\"},\"issuer_id\":\"certified-workshop\",\"model\":{\"adapter_hash\":\"cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"dataset_merkle_root\":\"\",\"framework\":\"transformers+peft\",\"model_name\":\"peft:TinyLlama/TinyLlama-1.1B-Chat-v1.0\",\"model_version\":\"vehicle-lora-v2\"},\"odometer_km\":98002,\"proof_id\":\"00000000-0000-4000-8000-000000000002\",\"report_hash\":\"57df011d49eb93c65037b823b4833bf3a45b165dcdd1ceb519610fd21549d634\",\"timestamp\":1760000000.5,\"vehicle\":\"2016 Honda Civic\",\"vin\":\"1HGBH41JXMN109186\"}"
+  }
+ ],
+ "merkle": [
+  {
+   "leaves": [
+    "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7"
+   ],
+   "root": "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+   "proofs": [
+    {
+     "leaf_index": 0,
+     "leaf_hash_hex": "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+     "siblings": [],
+     "root_hex": "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7"
+    }
+   ]
+  },
+  {
+   "leaves": [
+    "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+    "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f"
+   ],
+   "root": "60a53eed0de87a90c8e59427c59c46253c33a76a09502a51801300927b7e6bdc",
+   "proofs": [
+    {
+     "leaf_index": 0,
+     "leaf_hash_hex": "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+     "siblings": [
+      "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f"
+     ],
+     "root_hex": "60a53eed0de87a90c8e59427c59c46253c33a76a09502a51801300927b7e6bdc"
+    },
+    {
+     "leaf_index": 1,
+     "leaf_hash_hex": "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+     "siblings": [
+      "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7"
+     ],
+     "root_hex": "60a53eed0de87a90c8e59427c59c46253c33a76a09502a51801300927b7e6bdc"
+    }
+   ]
+  },
+  {
+   "leaves": [
+    "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+    "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+    "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267"
+   ],
+   "root": "2e07059fb7dc51ca9951054f3e4bd7174279e77d3fc17bb29acaff97f302974b",
+   "proofs": [
+    {
+     "leaf_index": 0,
+     "leaf_hash_hex": "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+     "siblings": [
+      "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+      "3aed99c5de817e2b6e8a7c39244cb25223aeb1c22f5ccc8403b5c4a8abe1c2d4"
+     ],
+     "root_hex": "2e07059fb7dc51ca9951054f3e4bd7174279e77d3fc17bb29acaff97f302974b"
+    },
+    {
+     "leaf_index": 1,
+     "leaf_hash_hex": "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+     "siblings": [
+      "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+      "3aed99c5de817e2b6e8a7c39244cb25223aeb1c22f5ccc8403b5c4a8abe1c2d4"
+     ],
+     "root_hex": "2e07059fb7dc51ca9951054f3e4bd7174279e77d3fc17bb29acaff97f302974b"
+    },
+    {
+     "leaf_index": 2,
+     "leaf_hash_hex": "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+     "siblings": [
+      "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+      "60a53eed0de87a90c8e59427c59c46253c33a76a09502a51801300927b7e6bdc"
+     ],
+     "root_hex": "2e07059fb7dc51ca9951054f3e4bd7174279e77d3fc17bb29acaff97f302974b"
+    }
+   ]
+  },
+  {
+   "leaves": [
+    "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+    "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+    "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+    "f76836325aec5699d8d71f8e42e9d47c5c29b08059ba296384f7ca40ad3a40ae"
+   ],
+   "root": "bdd1c5ff55b19cb6b0e7c761bf9a6ccaa27fbbfc07b74f1fabb6e911a0bd2ab3",
+   "proofs": [
+    {
+     "leaf_index": 0,
+     "leaf_hash_hex": "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+     "siblings": [
+      "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+      "bd45ff28796704d88bdac51b1df553fda59837b616d6d1cb2114dbc3b087ff69"
+     ],
+     "root_hex": "bdd1c5ff55b19cb6b0e7c761bf9a6ccaa27fbbfc07b74f1fabb6e911a0bd2ab3"
+    },
+    {
+     "leaf_index": 1,
+     "leaf_hash_hex": "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+     "siblings": [
+      "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+      "bd45ff28796704d88bdac51b1df553fda59837b616d6d1cb2114dbc3b087ff69"
+     ],
+     "root_hex": "bdd1c5ff55b19cb6b0e7c761bf9a6ccaa27fbbfc07b74f1fabb6e911a0bd2ab3"
+    },
+    {
+     "leaf_index": 2,
+     "leaf_hash_hex": "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+     "siblings": [
+      "f76836325aec5699d8d71f8e42e9d47c5c29b08059ba296384f7ca40ad3a40ae",
+      "60a53eed0de87a90c8e59427c59c46253c33a76a09502a51801300927b7e6bdc"
+     ],
+     "root_hex": "bdd1c5ff55b19cb6b0e7c761bf9a6ccaa27fbbfc07b74f1fabb6e911a0bd2ab3"
+    },
+    {
+     "leaf_index": 3,
+     "leaf_hash_hex": "f76836325aec5699d8d71f8e42e9d47c5c29b08059ba296384f7ca40ad3a40ae",
+     "siblings": [
+      "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+      "60a53eed0de87a90c8e59427c59c46253c33a76a09502a51801300927b7e6bdc"
+     ],
+     "root_hex": "bdd1c5ff55b19cb6b0e7c761bf9a6ccaa27fbbfc07b74f1fabb6e911a0bd2ab3"
+    }
+   ]
+  },
+  {
+   "leaves": [
+    "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+    "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+    "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+    "f76836325aec5699d8d71f8e42e9d47c5c29b08059ba296384f7ca40ad3a40ae",
+    "ea9fc1a1b6e191b460d0d6306e3e870c173f39330f13cda1b70cfc72bdc398ba"
+   ],
+   "root": "aaee56ce5e352748dece183c190368682111de3b1b62c410086ee2d21e25b8a6",
+   "proofs": [
+    {
+     "leaf_index": 0,
+     "leaf_hash_hex": "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+     "siblings": [
+      "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+      "bd45ff28796704d88bdac51b1df553fda59837b616d6d1cb2114dbc3b087ff69",
+      "4eccc0f5937fe321c9ec6d68f991cf009872035ff74775b9a1c4a8ecdcbb78ff"
+     ],
+     "root_hex": "aaee56ce5e352748dece183c190368682111de3b1b62c410086ee2d21e25b8a6"
+    },
+    {
+     "leaf_index": 1,
+     "leaf_hash_hex": "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+     "siblings": [
+      "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+      "bd45ff28796704d88bdac51b1df553fda59837b616d6d1cb2114dbc3b087ff69",
+      "4eccc0f5937fe321c9ec6d68f991cf009872035ff74775b9a1c4a8ecdcbb78ff"
+     ],
+     "root_hex": "aaee56ce5e352748dece183c190368682111de3b1b62c410086ee2d21e25b8a6"
+    },
+    {
+     "leaf_index": 2,
+     "leaf_hash_hex": "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+     "siblings": [
+      "f76836325aec5699d8d71f8e42e9d47c5c29b08059ba296384f7ca40ad3a40ae",
+      "60a53eed0de87a90c8e59427c59c46253c33a76a09502a51801300927b7e6bdc",
+      "4eccc0f5937fe321c9ec6d68f991cf009872035ff74775b9a1c4a8ecdcbb78ff"
+     ],
+     "root_hex": "aaee56ce5e352748dece183c190368682111de3b1b62c410086ee2d21e25b8a6"
+    },
+    {
+     "leaf_index": 3,
+     "leaf_hash_hex": "f76836325aec5699d8d71f8e42e9d47c5c29b08059ba296384f7ca40ad3a40ae",
+     "siblings": [
+      "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+      "60a53eed0de87a90c8e59427c59c46253c33a76a09502a51801300927b7e6bdc",
+      "4eccc0f5937fe321c9ec6d68f991cf009872035ff74775b9a1c4a8ecdcbb78ff"
+     ],
+     "root_hex": "aaee56ce5e352748dece183c190368682111de3b1b62c410086ee2d21e25b8a6"
+    },
+    {
+     "leaf_index": 4,
+     "leaf_hash_hex": "ea9fc1a1b6e191b460d0d6306e3e870c173f39330f13cda1b70cfc72bdc398ba",
+     "siblings": [
+      "ea9fc1a1b6e191b460d0d6306e3e870c173f39330f13cda1b70cfc72bdc398ba",
+      "613d82cf843e08c9aa1ee2cd8de28867544fc6976d14ab8fe95807352e73e691",
+      "bdd1c5ff55b19cb6b0e7c761bf9a6ccaa27fbbfc07b74f1fabb6e911a0bd2ab3"
+     ],
+     "root_hex": "aaee56ce5e352748dece183c190368682111de3b1b62c410086ee2d21e25b8a6"
+    }
+   ]
+  },
+  {
+   "leaves": [
+    "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+    "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+    "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+    "f76836325aec5699d8d71f8e42e9d47c5c29b08059ba296384f7ca40ad3a40ae",
+    "ea9fc1a1b6e191b460d0d6306e3e870c173f39330f13cda1b70cfc72bdc398ba",
+    "8f1593cb92f429d9340b9bbc1f0bb122adf8026c42a4a42142e2168931727236"
+   ],
+   "root": "7891703f4ad548ef42ee73a0dd920e1e32ef8e1f391c4785de2e3d91b2de6529",
+   "proofs": [
+    {
+     "leaf_index": 0,
+     "leaf_hash_hex": "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+     "siblings": [
+      "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+      "bd45ff28796704d88bdac51b1df553fda59837b616d6d1cb2114dbc3b087ff69",
+      "a43fbbe486efa629dec3becc372ea1968fc852b1d048586f94a21d6806c71f1e"
+     ],
+     "root_hex": "7891703f4ad548ef42ee73a0dd920e1e32ef8e1f391c4785de2e3d91b2de6529"
+    },
+    {
+     "leaf_index": 1,
+     "leaf_hash_hex": "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+     "siblings": [
+      "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+      "bd45ff28796704d88bdac51b1df553fda59837b616d6d1cb2114dbc3b087ff69",
+      "a43fbbe486efa629dec3becc372ea1968fc852b1d048586f94a21d6806c71f1e"
+     ],
+     "root_hex": "7891703f4ad548ef42ee73a0dd920e1e32ef8e1f391c4785de2e3d91b2de6529"
+    },
+    {
+     "leaf_index": 2,
+     "leaf_hash_hex": "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+     "siblings": [
+      "f76836325aec5699d8d71f8e42e9d47c5c29b08059ba296384f7ca40ad3a40ae",
+      "60a53eed0de87a90c8e59427c59c46253c33a76a09502a51801300927b7e6bdc",
+      "a43fbbe486efa629dec3becc372ea1968fc852b1d048586f94a21d6806c71f1e"
+     ],
+     "root_hex": "7891703f4ad548ef42ee73a0dd920e1e32ef8e1f391c4785de2e3d91b2de6529"
+    },
+    {
+     "leaf_index": 3,
+     "leaf_hash_hex": "f76836325aec5699d8d71f8e42e9d47c5c29b08059ba296384f7ca40ad3a40ae",
+     "siblings": [
+      "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+      "60a53eed0de87a90c8e59427c59c46253c33a76a09502a51801300927b7e6bdc",
+      "a43fbbe486efa629dec3becc372ea1968fc852b1d048586f94a21d6806c71f1e"
+     ],
+     "root_hex": "7891703f4ad548ef42ee73a0dd920e1e32ef8e1f391c4785de2e3d91b2de6529"
+    },
+    {
+     "leaf_index": 4,
+     "leaf_hash_hex": "ea9fc1a1b6e191b460d0d6306e3e870c173f39330f13cda1b70cfc72bdc398ba",
+     "siblings": [
+      "8f1593cb92f429d9340b9bbc1f0bb122adf8026c42a4a42142e2168931727236",
+      "985bb5d36b927800876871da925a7e82abe83a9ddba5882920a007a55ea2b376",
+      "bdd1c5ff55b19cb6b0e7c761bf9a6ccaa27fbbfc07b74f1fabb6e911a0bd2ab3"
+     ],
+     "root_hex": "7891703f4ad548ef42ee73a0dd920e1e32ef8e1f391c4785de2e3d91b2de6529"
+    },
+    {
+     "leaf_index": 5,
+     "leaf_hash_hex": "8f1593cb92f429d9340b9bbc1f0bb122adf8026c42a4a42142e2168931727236",
+     "siblings": [
+      "ea9fc1a1b6e191b460d0d6306e3e870c173f39330f13cda1b70cfc72bdc398ba",
+      "985bb5d36b927800876871da925a7e82abe83a9ddba5882920a007a55ea2b376",
+      "bdd1c5ff55b19cb6b0e7c761bf9a6ccaa27fbbfc07b74f1fabb6e911a0bd2ab3"
+     ],
+     "root_hex": "7891703f4ad548ef42ee73a0dd920e1e32ef8e1f391c4785de2e3d91b2de6529"
+    }
+   ]
+  },
+  {
+   "leaves": [
+    "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+    "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+    "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+    "f76836325aec5699d8d71f8e42e9d47c5c29b08059ba296384f7ca40ad3a40ae",
+    "ea9fc1a1b6e191b460d0d6306e3e870c173f39330f13cda1b70cfc72bdc398ba",
+    "8f1593cb92f429d9340b9bbc1f0bb122adf8026c42a4a42142e2168931727236",
+    "676f3782f5b3a5fb4370ed49572cedc523f4a66322269c85f2af0509d17b0a4d"
+   ],
+   "root": "527315d08a63723202beab716389a540888ad51a69741e51a6261b716fc0051c",
+   "proofs": [
+    {
+     "leaf_index": 0,
+     "leaf_hash_hex": "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+     "siblings": [
+      "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+      "bd45ff28796704d88bdac51b1df553fda59837b616d6d1cb2114dbc3b087ff69",
+      "fdd4ba861775c458c9edda7980f272b7ee5848f7398fb973cba95b316c3314fa"
+     ],
+     "root_hex": "527315d08a63723202beab716389a540888ad51a69741e51a6261b716fc0051c"
+    },
+    {
+     "leaf_index": 1,
+     "leaf_hash_hex": "3145c409f259b7c53e32036090ff76751025a2498ba9823ef718cac50b4e616f",
+     "siblings": [
+      "305df59f9590c3c9ac63d2b2743c388e3792449078cebf7fb3dbe6471643b2b7",
+      "bd45ff28796704d88bdac51b1df553fda59837b616d6d1cb2114dbc3b087ff69",
+      "fdd4ba861775c458c9edda7980f272b7ee5848f7398fb973cba95b316c3314fa"
+     ],
+     "root_hex": "527315d08a63723202beab716389a540888ad51a69741e51a6261b716fc0051c"
+    },
+    {
+     "leaf_index": 2,
+     "leaf_hash_hex": "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+     "siblings": [
+      "f76836325aec5699d8d71f8e42e9d47c5c29b08059ba296384f7ca40ad3a40ae",
+      "60a53eed0de87a90c8e59427c59c46253c33a76a09502a51801300927b7e6bdc",
+      "fdd4ba861775c458c9edda7980f272b7ee5848f7398fb973cba95b316c3314fa"
+     ],
+     "root_hex": "527315d08a63723202beab716389a540888ad51a69741e51a6261b716fc0051c"
+    },
+    {
+     "leaf_index": 3,
+     "leaf_hash_hex": "f76836325aec5699d8d71f8e42e9d47c5c29b08059ba296384f7ca40ad3a40ae",
+     "siblings": [
+      "fca89f57c9f8c8eb4047a7ff9d333acf9e0f3384b20b255bceab0f216dcca267",
+      "60a53eed0de87a90c8e59427c59c46253c33a76a09502a51801300927b7e6bdc",
+      "fdd4ba861775c458c9edda7980f272b7ee5848f7398fb973cba95b316c3314fa"
+     ],
+     "root_hex": "527315d08a63723202beab716389a540888ad51a69741e51a6261b716fc0051c"
+    },
+    {
+     "leaf_index": 4,
+     "leaf_hash_hex": "ea9fc1a1b6e191b460d0d6306e3e870c173f39330f13cda1b70cfc72bdc398ba",
+     "siblings": [
+      "8f1593cb92f429d9340b9bbc1f0bb122adf8026c42a4a42142e2168931727236",
+      "b8d540997ddf7b4e6ca3789331d7c4b56175a181cfa558ce54733ae459500887",
+      "bdd1c5ff55b19cb6b0e7c761bf9a6ccaa27fbbfc07b74f1fabb6e911a0bd2ab3"
+     ],
+     "root_hex": "527315d08a63723202beab716389a540888ad51a69741e51a6261b716fc0051c"
+    },
+    {
+     "leaf_index": 5,
+     "leaf_hash_hex": "8f1593cb92f429d9340b9bbc1f0bb122adf8026c42a4a42142e2168931727236",
+     "siblings": [
+      "ea9fc1a1b6e191b460d0d6306e3e870c173f39330f13cda1b70cfc72bdc398ba",
+      "b8d540997ddf7b4e6ca3789331d7c4b56175a181cfa558ce54733ae459500887",
+      "bdd1c5ff55b19cb6b0e7c761bf9a6ccaa27fbbfc07b74f1fabb6e911a0bd2ab3"
+     ],
+     "root_hex": "527315d08a63723202beab716389a540888ad51a69741e51a6261b716fc0051c"
+    },
+    {
+     "leaf_index": 6,
+     "leaf_hash_hex": "676f3782f5b3a5fb4370ed49572cedc523f4a66322269c85f2af0509d17b0a4d",
+     "siblings": [
+      "676f3782f5b3a5fb4370ed49572cedc523f4a66322269c85f2af0509d17b0a4d",
+      "985bb5d36b927800876871da925a7e82abe83a9ddba5882920a007a55ea2b376",
+      "bdd1c5ff55b19cb6b0e7c761bf9a6ccaa27fbbfc07b74f1fabb6e911a0bd2ab3"
+     ],
+     "root_hex": "527315d08a63723202beab716389a540888ad51a69741e51a6261b716fc0051c"
+    }
+   ]
+  }
+ ]
+}

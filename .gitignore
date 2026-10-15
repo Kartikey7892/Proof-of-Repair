@@ -33,3 +33,8 @@ chain/artifacts/
 data/raw/CMAPSS/
 data/raw/HomeAppliance/
 *.zip
+
+# Node backend runtime
+artifacts/pglite/
+artifacts/sim_ledger.json
+server/dist/
