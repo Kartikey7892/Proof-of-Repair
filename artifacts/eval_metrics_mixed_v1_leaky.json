@@ -1,0 +1,28 @@
+{
+  "n": 40,
+  "fault_code_accuracy": 0.225,
+  "json_validity_rate": 0.875,
+  "schema_completeness_rate": 0.875,
+  "rouge_l_repair_steps": 0.1857,
+  "errors": 5,
+  "model_name": "peft:TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "model_version": "vehicle-lora-v2",
+  "adapter_hash": "d12baa8eb7109a8b9afd0ace67d3c3b4e77fccac86a5f8d0744a35d73848f517",
+  "examples": [
+    {
+      "id": "CMAPSS-FD001-49-150",
+      "gold": "PWRTRN_WEAR_MODERATE",
+      "pred": "MAF_HEMI"
+    },
+    {
+      "id": "CMAPSS-FD001-69-343",
+      "gold": "PWRTRN_WEAR_CRITICAL",
+      "pred": "MAF_HEMI"
+    },
+    {
+      "id": "CMAPSS-FD003-70-51",
+      "gold": "PWRTRN_HEALTH_OK",
+      "pred": "MAF_TE"
+    }
+  ]
+}

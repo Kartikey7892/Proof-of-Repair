@@ -1,0 +1,7 @@
+# Minimal deps for PoR demo + API + tests (no GPU / no model download)
+fastapi>=0.110.0
+uvicorn>=0.27.0
+pydantic>=2.6.0
+pytest>=8.0.0
+web3>=7.0.0
+opentimestamps>=0.4.5

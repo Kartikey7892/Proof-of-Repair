@@ -1,0 +1,47 @@
+{
+  "run_id": "1b49f663-c480-45dc-a35e-e94f19e3b878",
+  "timestamp": 1787767647.280324,
+  "domain": "second_hand_vehicle_proof_of_repair",
+  "base_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "method": "LoRA/PEFT",
+  "device": "mps",
+  "paper_refs": [
+    "P7 Hu et al. LoRA",
+    "P1 Blockchain-Enabled LLMs for PHM",
+    "P4 RSP provenance anchoring"
+  ],
+  "datasets": [
+    "MechanicDB OBD-II",
+    "automotive-dtc-finetune",
+    "NHTSA complaints",
+    "NASA CMAPSS",
+    "UCI AI4I 2020"
+  ],
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ]
+  },
+  "hyperparameters": {
+    "epochs": 1.0,
+    "max_steps": 5,
+    "lr": 0.0002,
+    "max_seq_length": 384,
+    "batch_size": 1,
+    "grad_accum": 2,
+    "seed": 42
+  },
+  "train_samples": 2327,
+  "val_samples": 290,
+  "dataset_merkle_root": "ec8c03d4837fed0f7a3b668649a308b9b50c18fb7f2f0285d47da5c55d68be95",
+  "output_dir": "artifacts/adapters/vehicle-lora-test",
+  "adapter_hash": "3732d4c286a5dee0a4722ddc03f470c66632cdf77c2c6539de2bace58888532f",
+  "train_loss": 2.2976612567901613,
+  "torch_version": "2.13.0"
+}

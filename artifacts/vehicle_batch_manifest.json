@@ -1,0 +1,192 @@
+{
+  "batch_id": "used-car-batch-mistral-001",
+  "merkle_root": "8001497011a86c45e0e03efdd9e9e7b43a21f560313a471436f784440e5f8901",
+  "ots_receipt": {
+    "receipt_id": "afc82a84-41ae-4b3d-b645-be206b537bc3",
+    "digest_hex": "8001497011a86c45e0e03efdd9e9e7b43a21f560313a471436f784440e5f8901",
+    "calendar_url": "local://ots-calendar-sim",
+    "submitted_at": 1787934485.058518,
+    "confirmed_at": 1787934485.068518,
+    "bitcoin_block_height": 850001,
+    "bitcoin_block_hash": "9daea988a9c8fe7b3beef71ef2cca3a4c7e39b54b6815da71a3e36b208de5bb0",
+    "status": "confirmed",
+    "operations": [
+      "append:aec6df07ced8613c",
+      "sha256",
+      "bitcoin_attest:sim_block_850001"
+    ]
+  },
+  "chain_tx": {
+    "merkle_root": "8001497011a86c45e0e03efdd9e9e7b43a21f560313a471436f784440e5f8901",
+    "batch_id": "used-car-batch-mistral-001",
+    "meta_uri": "artifacts/vehicle_batch_manifest.json",
+    "submitter": "0xCloudPoRService",
+    "anchored_at": 1787934485.058671,
+    "tx_hash": "0xdf99262816f84b91bbdbc456fac416ec"
+  },
+  "proofs": [
+    {
+      "proof_id": "b2bbaa3d-25ee-4ca3-84c5-e5f7109e00ae",
+      "vin": "1HGBH41JXMN109186",
+      "vehicle": "2016 Honda Civic",
+      "odometer_km": 98000,
+      "event_type": "REPAIR",
+      "issuer_id": "certified-workshop",
+      "timestamp": 1787934450.529928,
+      "report": {
+        "fault_code": "P0420",
+        "diagnosis": "**Fault Code:** P0420 \u2014 O2 Sensor Signal Biased/Stuck Lean Bank 1 Sensor 1\n**Vehicle:** 2016 Honda Civic\n**System:** O2 Sensor | **Type:** Powertrain | **Severity:** \ud83d\udfe0 HIGH PRIORITY \u2014 Schedule repair very soon.",
+        "severity": "high",
+        "parts": [
+          "O2 Sensor"
+        ],
+        "repair_steps": [
+          "Connect an OBD-II scanner and confirm the code is active (not pending).",
+          "Check for related Technical Service Bulletins (TSBs) for your vehicle.",
+          "Inspect the exhaust manifold gasket for leaks near the O2 sensor.",
+          "Test each probable cause systematically, starting with the lowest-cost item.",
+          "Repair or replace the faulty component.",
+          "Document parts/labor for buyer disclosure.",
+          "Clear related codes and confirm road test.",
+          "Document road test and confirm repair complete."
+        ],
+        "qa_checks": [
+          "symptom_present",
+          "fault_code_present",
+          "no_related_dtc",
+          "confirm_repair_steps"
+        ],
+        "estimated_minutes": 75,
+        "confidence": 0.8,
+        "buyer_advice": "Do not buy this vehicle without a qualified inspection and repair. The check engine light is on, the vehicle failed emissions, and the O2 sensor is stuck or biased lean. This is a high-priority repair item that can lead to serious drivability and fuel efficiency issues. The repair process is moderately complex and time-consuming, so be prepared for a significant investment of time and resources."
+      },
+      "evidence_cid": "31491bd4765190a9421999e580a879894d7c7ea43b53e03cc29a46c7f85ed594",
+      "report_hash": "49ffe3fade985c8fc4416fd38991ecba9e63ba679af6a444f2866e5a37aa9361",
+      "model": {
+        "model_name": "mlx-lora:mlx-community/Mistral-7B-Instruct-v0.2-4bit",
+        "model_version": "mistral-mlx-v1",
+        "adapter_hash": "2c931489574c62f0f608512a6cb176a40431a260981e39a34bf12eccb68f4274",
+        "dataset_merkle_root": "c1e46041eae3585f4d1287498b6e83c54849905a10e60416a5379486db880933",
+        "framework": "transformers+peft"
+      },
+      "leaf_digest": "115158a0e389ab416605b610c17594e794ecf910f7144bdf2c050afab1645b5a",
+      "extra": {
+        "audience": "second_hand_buyer"
+      }
+    },
+    {
+      "proof_id": "9b9c7b87-9a22-4ad0-813d-4a903e49dd31",
+      "vin": "4T1BF1FK5EU123456",
+      "vehicle": "2015 Toyota Camry",
+      "odometer_km": 142000,
+      "event_type": "REPAIR",
+      "issuer_id": "certified-workshop",
+      "timestamp": 1787934465.80719,
+      "report": {
+        "fault_code": "P0300",
+        "diagnosis": "**Fault Code:** P0300 \u2014 Random/Multiple Cylinder Misfire\n**Vehicle:** 2015 Toyota Camry\n**System:** **Fault Code** \u2014 **Diagnosis** \u2014 Random/Multiple Cylinder Misfire\n**Type:** Powertrain | **Severity:** \ud83d\udfe1 MODERATE \u2014 Repair at your earliest convenience.",
+        "severity": "medium",
+        "parts": [
+          "**Fault Code**"
+        ],
+        "repair_steps": [
+          "Connect an OBD-II scanner and confirm the code is active (not pending).",
+          "Perform a cylinder compression test to isolate the affected cylinder(s).",
+          "Check for vacuum leaks near the intake manifold gasket.",
+          "Inspect the ignition system components \u2014 distributor, ignition coil, and spark plugs.",
+          "Test the fuel system \u2014 fuel filter, fuel pump, and fuel injectors.",
+          "Check the timing system \u2014 camshaft and crankshaft position sensors.",
+          "Repair or replace the faulty component(s)."
+        ],
+        "qa_checks": [
+          "symptom_resolved",
+          "no_related_dtcs",
+          "service_record_filed"
+        ],
+        "estimated_minutes": 90,
+        "confidence": 0.8,
+        "buyer_advice": "Buy with caution. The misfire condition is a serious powertrain issue. The repair procedure is moderately complex and time-consuming. The severity is moderate, but the repair cost and parts availability are unknown. The confidence is high that the misfire is the cause of the rough idle."
+      },
+      "evidence_cid": "64d2a169815255bef1ce0cf8b866ed9f67ac99852e5a47600ce61c5731e08a7c",
+      "report_hash": "cdda561918107149c3f68f04a6edb0369a17dde70580025c779053ca6761fab9",
+      "model": {
+        "model_name": "mlx-lora:mlx-community/Mistral-7B-Instruct-v0.2-4bit",
+        "model_version": "mistral-mlx-v1",
+        "adapter_hash": "2c931489574c62f0f608512a6cb176a40431a260981e39a34bf12eccb68f4274",
+        "dataset_merkle_root": "c1e46041eae3585f4d1287498b6e83c54849905a10e60416a5379486db880933",
+        "framework": "transformers+peft"
+      },
+      "leaf_digest": "7956a84f916cb6193691a65f5bb931f2ea3894f9d9c68158cd7dc737ff6c82f1",
+      "extra": {
+        "audience": "second_hand_buyer"
+      }
+    },
+    {
+      "proof_id": "da380e17-c544-4ac2-96f0-b2d3fe645dd1",
+      "vin": "1FTEW1EP5JFA00001",
+      "vehicle": "2018 Ford F-150",
+      "odometer_km": 87000,
+      "event_type": "REPAIR",
+      "issuer_id": "certified-workshop",
+      "timestamp": 1787934485.0584471,
+      "report": {
+        "fault_code": "C0031",
+        "diagnosis": "**Fault Code:** C0031 \u2014 ABS/EBCM/ECM/EBCM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/ECM/",
+        "severity": "medium",
+        "parts": [],
+        "repair_steps": [],
+        "qa_checks": [],
+        "estimated_minutes": 60,
+        "confidence": 0.7,
+        "buyer_advice": "Request repair invoice and post-repair OBD screenshot before purchase."
+      },
+      "evidence_cid": "033d3645f31028cffe158a9354d4aeb1d019cd1342cd198cbd2a845318ac121f",
+      "report_hash": "13f43bec87dd7fd1edc51edc5b3bbef6d32ff5391fe9df32be974da816119572",
+      "model": {
+        "model_name": "mlx-lora:mlx-community/Mistral-7B-Instruct-v0.2-4bit",
+        "model_version": "mistral-mlx-v1",
+        "adapter_hash": "2c931489574c62f0f608512a6cb176a40431a260981e39a34bf12eccb68f4274",
+        "dataset_merkle_root": "c1e46041eae3585f4d1287498b6e83c54849905a10e60416a5379486db880933",
+        "framework": "transformers+peft"
+      },
+      "leaf_digest": "8bd908a43734fa27a8871b593b039ec0f5a4224e26a279eea1a0d36cdb98828f",
+      "extra": {
+        "audience": "second_hand_buyer"
+      }
+    }
+  ],
+  "merkle_proofs": {
+    "0": {
+      "leaf_index": 0,
+      "leaf_hash_hex": "115158a0e389ab416605b610c17594e794ecf910f7144bdf2c050afab1645b5a",
+      "siblings": [
+        "7956a84f916cb6193691a65f5bb931f2ea3894f9d9c68158cd7dc737ff6c82f1",
+        "b16a8d88ddd0ef8b124c6c882204baeef560648d5324bf65101809a3b14d2364"
+      ],
+      "root_hex": "8001497011a86c45e0e03efdd9e9e7b43a21f560313a471436f784440e5f8901"
+    },
+    "1": {
+      "leaf_index": 1,
+      "leaf_hash_hex": "7956a84f916cb6193691a65f5bb931f2ea3894f9d9c68158cd7dc737ff6c82f1",
+      "siblings": [
+        "115158a0e389ab416605b610c17594e794ecf910f7144bdf2c050afab1645b5a",
+        "b16a8d88ddd0ef8b124c6c882204baeef560648d5324bf65101809a3b14d2364"
+      ],
+      "root_hex": "8001497011a86c45e0e03efdd9e9e7b43a21f560313a471436f784440e5f8901"
+    },
+    "2": {
+      "leaf_index": 2,
+      "leaf_hash_hex": "8bd908a43734fa27a8871b593b039ec0f5a4224e26a279eea1a0d36cdb98828f",
+      "siblings": [
+        "8bd908a43734fa27a8871b593b039ec0f5a4224e26a279eea1a0d36cdb98828f",
+        "184419a3993f4a3941f06cae7d05315d6e4e670918c89f0f6a7cfedf259e6bea"
+      ],
+      "root_hex": "8001497011a86c45e0e03efdd9e9e7b43a21f560313a471436f784440e5f8901"
+    }
+  },
+  "model": {
+    "name": "mlx-lora:mlx-community/Mistral-7B-Instruct-v0.2-4bit",
+    "version": "mistral-mlx-v1",
+    "adapter_hash": "2c931489574c62f0f608512a6cb176a40431a260981e39a34bf12eccb68f4274"
+  }
+}

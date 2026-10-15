@@ -1,0 +1,130 @@
+{
+  "protocol": {
+    "test_file": "/Users/shivansh/Desktop/proof of repair/data/processed/test_raw.jsonl",
+    "limit": 163,
+    "sources_filter": [
+      "automotive_dtc_finetune",
+      "mechanicdb_obd2",
+      "nhtsa_complaints"
+    ],
+    "pass_gold_dtc_hint": false,
+    "engine": "mistral"
+  },
+  "overall": {
+    "n": 163,
+    "fault_code_accuracy": 0.4356,
+    "json_validity_rate": 0.9693,
+    "schema_completeness_rate": 0.9693,
+    "severity_accuracy": 0.6687,
+    "rouge_l_repair_steps": 0.5495,
+    "errors": 5
+  },
+  "automotive_dtc": {
+    "n": 163,
+    "fault_code_accuracy": 0.4356,
+    "json_validity_rate": 0.9693,
+    "schema_completeness_rate": 0.9693,
+    "severity_accuracy": 0.6687,
+    "rouge_l_repair_steps": 0.5495,
+    "errors": 5
+  },
+  "transfer_domains": {
+    "n": 0,
+    "fault_code_accuracy": 0.0,
+    "json_validity_rate": 0.0,
+    "schema_completeness_rate": 0.0,
+    "severity_accuracy": 0.0,
+    "rouge_l_repair_steps": 0.0,
+    "errors": 0
+  },
+  "by_source": {
+    "automotive_dtc_finetune": {
+      "n": 24,
+      "fault_code_accuracy": 1.0,
+      "json_validity_rate": 1.0,
+      "schema_completeness_rate": 1.0,
+      "severity_accuracy": 0.375,
+      "rouge_l_repair_steps": 0.2681,
+      "errors": 0
+    },
+    "mechanicdb_obd2": {
+      "n": 33,
+      "fault_code_accuracy": 0.9697,
+      "json_validity_rate": 0.9697,
+      "schema_completeness_rate": 0.9697,
+      "severity_accuracy": 0.7576,
+      "rouge_l_repair_steps": 0.2163,
+      "errors": 1
+    },
+    "nhtsa_complaints": {
+      "n": 106,
+      "fault_code_accuracy": 0.1415,
+      "json_validity_rate": 0.9623,
+      "schema_completeness_rate": 0.9623,
+      "severity_accuracy": 0.7075,
+      "rouge_l_repair_steps": 0.7202,
+      "errors": 4
+    }
+  },
+  "model_name": "mlx-lora:mlx-community/Mistral-7B-Instruct-v0.2-4bit",
+  "model_version": "mistral-mlx-v1",
+  "adapter_hash": "2c931489574c62f0f608512a6cb176a40431a260981e39a34bf12eccb68f4274",
+  "examples": [
+    {
+      "id": "NHTSA-toyota_camry_2015-73",
+      "source": "nhtsa_complaints",
+      "gold": "NHTSA_POWER_TRAIN",
+      "pred": "NHTSA/Chrysler/Toyota/POWER TRAIN/TORQUE CONVERTER",
+      "match": false
+    },
+    {
+      "id": "NHTSA-toyota_corolla_2014-54",
+      "source": "nhtsa_complaints",
+      "gold": "NHTSA_POWER_TRAIN",
+      "pred": "N/A",
+      "match": false
+    },
+    {
+      "id": "DTCFT-validation-9-P0302",
+      "source": "automotive_dtc_finetune",
+      "gold": "P0302",
+      "pred": "P0302",
+      "match": true
+    },
+    {
+      "id": "MDB-P0011-2713",
+      "source": "mechanicdb_obd2",
+      "gold": "P0011",
+      "pred": "P0011",
+      "match": true
+    },
+    {
+      "id": "NHTSA-ford_f-150_2018-23",
+      "source": "nhtsa_complaints",
+      "gold": "NHTSA_POWER_TRAIN",
+      "pred": "N/A",
+      "match": false
+    },
+    {
+      "id": "NHTSA-toyota_camry_2015-61",
+      "source": "nhtsa_complaints",
+      "gold": "NHTSA_POWER_TRAIN",
+      "pred": "NHTSA_POWER_TRAIN",
+      "match": true
+    },
+    {
+      "id": "NHTSA-nissan_altima_2015-11",
+      "source": "nhtsa_complaints",
+      "gold": "NHTSA_SUSPENSION",
+      "pred": "N/A",
+      "match": false
+    },
+    {
+      "id": "DTCFT-train-41-P0446",
+      "source": "automotive_dtc_finetune",
+      "gold": "P0446",
+      "pred": "P0446",
+      "match": true
+    }
+  ]
+}

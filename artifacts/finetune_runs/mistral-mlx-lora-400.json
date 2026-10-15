@@ -1,0 +1,14 @@
+{
+  "run_id": "mistral-mlx-lora-400",
+  "timestamp": 1787854505.745933,
+  "domain": "second_hand_vehicle_proof_of_repair",
+  "base_model": "mlx-community/Mistral-7B-Instruct-v0.2-4bit",
+  "method": "MLX LoRA",
+  "iters": 400,
+  "final_train_loss": 0.364,
+  "final_val_loss": 0.384,
+  "peak_mem_gb": 5.402,
+  "adapter_path": "artifacts/adapters/mistral-mlx-lora/adapters.safetensors",
+  "adapter_sha256": "2c931489574c62f0f608512a6cb176a40431a260981e39a34bf12eccb68f4274",
+  "dataset_merkle_root": "afee43ec8ccf062bd35e1a98acd6d3c1e222a8212c7f5605e857aef4c81eba35"
+}

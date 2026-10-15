@@ -1,0 +1,35 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+.DS_Store
+.ipynb_checkpoints/
+.env
+.env.local
+
+# Local runtime / models / secrets
+artifacts/evidence/
+artifacts/ots_calendar/
+artifacts/adapters/
+artifacts/*.log
+artifacts/*.out
+artifacts/*.pid
+artifacts/*.sqlite3
+artifacts/chain_config.json
+artifacts/hardhat_node.log
+artifacts/vin_registry/
+
+# Node / Hardhat
+node_modules/
+chain/node_modules/
+chain/cache/
+chain/artifacts/
+
+# Large or unrelated raw dumps
+data/raw/CMAPSS/
+data/raw/HomeAppliance/
+*.zip

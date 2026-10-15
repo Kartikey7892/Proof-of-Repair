@@ -1,0 +1,120 @@
+{
+  "protocol": {
+    "test_file": "/Users/shivansh/Desktop/proof of repair/data/processed/test_raw.jsonl",
+    "limit": 57,
+    "sources_filter": [
+      "mechanicdb_obd2",
+      "automotive_dtc_finetune"
+    ],
+    "pass_gold_dtc_hint": false,
+    "engine": "mistral"
+  },
+  "overall": {
+    "n": 57,
+    "fault_code_accuracy": 0.9825,
+    "json_validity_rate": 0.9825,
+    "schema_completeness_rate": 0.9825,
+    "severity_accuracy": 0.5965,
+    "rouge_l_repair_steps": 0.2385,
+    "errors": 1
+  },
+  "automotive_dtc": {
+    "n": 57,
+    "fault_code_accuracy": 0.9825,
+    "json_validity_rate": 0.9825,
+    "schema_completeness_rate": 0.9825,
+    "severity_accuracy": 0.5965,
+    "rouge_l_repair_steps": 0.2385,
+    "errors": 1
+  },
+  "transfer_domains": {
+    "n": 0,
+    "fault_code_accuracy": 0.0,
+    "json_validity_rate": 0.0,
+    "schema_completeness_rate": 0.0,
+    "severity_accuracy": 0.0,
+    "rouge_l_repair_steps": 0.0,
+    "errors": 0
+  },
+  "by_source": {
+    "automotive_dtc_finetune": {
+      "n": 24,
+      "fault_code_accuracy": 1.0,
+      "json_validity_rate": 1.0,
+      "schema_completeness_rate": 1.0,
+      "severity_accuracy": 0.375,
+      "rouge_l_repair_steps": 0.2681,
+      "errors": 0
+    },
+    "mechanicdb_obd2": {
+      "n": 33,
+      "fault_code_accuracy": 0.9697,
+      "json_validity_rate": 0.9697,
+      "schema_completeness_rate": 0.9697,
+      "severity_accuracy": 0.7576,
+      "rouge_l_repair_steps": 0.2163,
+      "errors": 1
+    }
+  },
+  "model_name": "mlx-lora:mlx-community/Mistral-7B-Instruct-v0.2-4bit",
+  "model_version": "mistral-mlx-v1",
+  "adapter_hash": "2c931489574c62f0f608512a6cb176a40431a260981e39a34bf12eccb68f4274",
+  "examples": [
+    {
+      "id": "DTCFT-validation-9-P0302",
+      "source": "automotive_dtc_finetune",
+      "gold": "P0302",
+      "pred": "P0302",
+      "match": true
+    },
+    {
+      "id": "MDB-P0011-2713",
+      "source": "mechanicdb_obd2",
+      "gold": "P0011",
+      "pred": "P0011",
+      "match": true
+    },
+    {
+      "id": "DTCFT-train-41-P0446",
+      "source": "automotive_dtc_finetune",
+      "gold": "P0446",
+      "pred": "P0446",
+      "match": true
+    },
+    {
+      "id": "MDB-P0446-6316",
+      "source": "mechanicdb_obd2",
+      "gold": "P0446",
+      "pred": "P0446",
+      "match": true
+    },
+    {
+      "id": "MDB-P1626-37860",
+      "source": "mechanicdb_obd2",
+      "gold": "P1626",
+      "pred": "P1626",
+      "match": true
+    },
+    {
+      "id": "DTCFT-train-75-U0155",
+      "source": "automotive_dtc_finetune",
+      "gold": "U0155",
+      "pred": "U0155",
+      "match": true
+    },
+    {
+      "id": "MDB-P0430-6227",
+      "source": "mechanicdb_obd2",
+      "gold": "P0430",
+      "pred": "P0430",
+      "match": true
+    },
+    {
+      "id": "MDB-P0403-6048",
+      "source": "mechanicdb_obd2",
+      "gold": "P0403",
+      "pred": "P0403",
+      "match": true
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "domain": "second_hand_vehicle_proof_of_repair",
+  "counts_by_source": {
+    "mechanicdb_obd2": 320,
+    "automotive_dtc_finetune": 140,
+    "nhtsa_complaints": 510,
+    "nasa_cmapss": 1200,
+    "uci_ai4i_2020": 739
+  },
+  "train": 2327,
+  "val": 290,
+  "test": 292,
+  "seed": 42,
+  "dataset_merkle_root": "afee43ec8ccf062bd35e1a98acd6d3c1e222a8212c7f5605e857aef4c81eba35",
+  "datasets": [
+    "MechanicDB OBD-II repair sample (Hugging Face)",
+    "RRK1987/automotive-dtc-finetune",
+    "NHTSA ODI complaints API (selected used-car models)",
+    "NASA CMAPSS FD001-FD004",
+    "UCI AI4I 2020 Predictive Maintenance"
+  ],
+  "papers": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P6",
+    "P7",
+    "P8"
+  ]
+}

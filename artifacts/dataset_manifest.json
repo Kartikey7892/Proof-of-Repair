@@ -1,0 +1,31 @@
+{
+  "domain": "second_hand_vehicle_proof_of_repair",
+  "profile": "dtc",
+  "disjoint_split": true,
+  "counts_by_source": {
+    "mechanicdb_obd2": 320,
+    "automotive_dtc_finetune": 140,
+    "nhtsa_complaints": 510
+  },
+  "train": 721,
+  "val": 86,
+  "test": 163,
+  "test_dtc": 163,
+  "seed": 42,
+  "dataset_merkle_root": "c1e46041eae3585f4d1287498b6e83c54849905a10e60416a5379486db880933",
+  "datasets": [
+    "mechanicdb_obd2",
+    "automotive_dtc_finetune",
+    "nhtsa_complaints"
+  ],
+  "papers": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P6",
+    "P7",
+    "P8"
+  ]
+}

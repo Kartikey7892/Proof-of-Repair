@@ -1,0 +1,78 @@
+{
+  "title": "Cloud-Based Proof of Repair for Second-Hand Vehicles",
+  "dataset": {
+    "profile": "dtc",
+    "disjoint_split": true,
+    "train": 721,
+    "val": 86,
+    "test": 163,
+    "merkle_root": "72a9bf4cdb5b19869e0b463763ce04d8d3a7202382f406b5ab34e58787bdcf28",
+    "seed": 42
+  },
+  "primary_obd_holdout_n57": {
+    "tinyllama": {
+      "n": 57,
+      "fault_code_accuracy": 0.9298,
+      "json_validity_rate": 1.0,
+      "schema_completeness_rate": 1.0,
+      "severity_accuracy": 0.5614,
+      "rouge_l_repair_steps": 0.1328,
+      "errors": 0,
+      "note": "MechanicDB + automotive-dtc-finetune only (real OBD DTCs)"
+    },
+    "mistral_mlx": {
+      "n": 57,
+      "fault_code_accuracy": 0.9825,
+      "json_validity_rate": 0.9825,
+      "schema_completeness_rate": 0.9825,
+      "severity_accuracy": 0.5965,
+      "rouge_l_repair_steps": 0.2385,
+      "errors": 1
+    },
+    "mistral_by_source": {
+      "automotive_dtc_finetune": {
+        "n": 24,
+        "fault_code_accuracy": 1.0,
+        "json_validity_rate": 1.0,
+        "schema_completeness_rate": 1.0,
+        "severity_accuracy": 0.375,
+        "rouge_l_repair_steps": 0.2681,
+        "errors": 0
+      },
+      "mechanicdb_obd2": {
+        "n": 33,
+        "fault_code_accuracy": 0.9697,
+        "json_validity_rate": 0.9697,
+        "schema_completeness_rate": 0.9697,
+        "severity_accuracy": 0.7576,
+        "rouge_l_repair_steps": 0.2163,
+        "errors": 1
+      }
+    }
+  },
+  "full_dtc_profile_n163": {
+    "tinyllama": {
+      "n": 163,
+      "fault_code_accuracy": 0.3252,
+      "json_validity_rate": 0.8282,
+      "schema_completeness_rate": 0.8282,
+      "severity_accuracy": 0.6012,
+      "rouge_l_repair_steps": 0.3273,
+      "errors": 28
+    },
+    "mistral_mlx": {
+      "n": 163,
+      "fault_code_accuracy": 0.4356,
+      "json_validity_rate": 0.9693,
+      "schema_completeness_rate": 0.9693,
+      "severity_accuracy": 0.6687,
+      "rouge_l_repair_steps": 0.5495,
+      "errors": 5
+    }
+  },
+  "adapters": {
+    "tinyllama_dtc": "artifacts/adapters/vehicle-lora-dtc",
+    "mistral_mlx": "artifacts/adapters/mistral-mlx-lora"
+  },
+  "headline": "Mistral 98.3% / TinyLlama 93.0% fault-code on real OBD hold-out (fair, DTC-disjoint)"
+}

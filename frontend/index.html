@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PROOF OF REPAIR — VIN attestation registry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="bay-glow" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="mark">POR</div>
+    <nav>
+      <a href="#lookup">Buyer lookup</a>
+      <a href="#inspect">Workshop</a>
+      <a href="#proof">Seal</a>
+      <a href="#anchor">Anchor</a>
+    </nav>
+    <div class="status-pill" id="healthPill">checking…</div>
+    <div class="status-pill chain" id="chainPill">chain…</div>
+    <div class="status-pill ots" id="otsPill">ots…</div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <p class="eyebrow">VIN-bound repair attestation registry</p>
+      <h1 class="brand">PROOF<br />OF REPAIR</h1>
+      <p class="lede">
+        Workshops seal what was fixed, when, and on which VIN.
+        Buyers, dealers, and insurers look up the timeline — not a PDF story.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="#lookup">Check a VIN</a>
+        <a class="btn ghost" href="#inspect">Workshop bay</a>
+      </div>
+    </section>
+
+    <section class="panel" id="lookup">
+      <div class="section-head">
+        <h2>00 · Buyer / dealer lookup</h2>
+        <p>Paste a VIN to see sealed repair events and whether they were anchored on-chain.</p>
+      </div>
+      <form id="vinForm" class="vin-form">
+        <label class="vin-field">
+          <span>VIN</span>
+          <input name="vin" required minlength="11" maxlength="32" placeholder="1HGBH41JXMN109186" autocomplete="off" />
+        </label>
+        <button type="submit" class="btn primary">Lookup timeline</button>
+      </form>
+      <p class="hint" id="vinHint">Empty VIN = no attested repairs in this registry yet.</p>
+      <div id="vinTrust" class="trust-banner" hidden></div>
+      <div id="vinTimeline" class="timeline" hidden></div>
+    </section>
+
+    <section class="panel" id="inspect">
+      <div class="section-head">
+        <h2>01 · Workshop bay</h2>
+        <p>Mechanic posts a repair attestation: diagnose, seal evidence to the VIN, then batch-anchor.</p>
+      </div>
+
+      <form id="diagForm" class="inspect-form">
+        <div class="field-row">
+          <label>
+            <span>VIN</span>
+            <input name="vin" required minlength="11" maxlength="32" placeholder="1HGBH41JXMN109186" autocomplete="off" />
+          </label>
+          <label>
+            <span>Vehicle</span>
+            <input name="vehicle" required placeholder="2016 Honda Civic" />
+          </label>
+        </div>
+        <div class="field-row">
+          <label>
+            <span>Odometer (km)</span>
+            <input name="odometer_km" type="number" min="0" required value="98000" />
+          </label>
+          <label>
+            <span>DTC codes</span>
+            <input name="dtc_codes" placeholder="P0420" />
+          </label>
+          <label>
+            <span>Engine</span>
+            <select name="engine" id="engineSelect">
+              <option value="tinyllama" selected>TinyLlama LoRA (fast)</option>
+              <option value="mistral">Mistral 4-bit MLX</option>
+            </select>
+          </label>
+        </div>
+        <label class="full">
+          <span>Symptoms</span>
+          <textarea name="symptoms" rows="3" required placeholder="CEL on, sulfur smell, failed emissions…"></textarea>
+        </label>
+        <label class="full">
+          <span>Sensor notes</span>
+          <textarea name="sensor_notes" rows="2" placeholder="rear O2 lazy…"></textarea>
+        </label>
+
+        <div class="demo-chips" id="demoChips" aria-label="Demo cases"></div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary" id="btnDiagnose">Seal repair to VIN</button>
+          <p class="hint" id="formHint">First run loads the model (~30–90s on Apple Silicon).</p>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel muted" id="proof" hidden>
+      <div class="section-head">
+        <h2>02 · Sealed repair</h2>
+        <p id="reportMeta"></p>
+      </div>
+      <div class="report-grid">
+        <div class="stamp">
+          <div class="stamp-code" id="faultCode">—</div>
+          <div class="stamp-sev" id="severity">—</div>
+        </div>
+        <div class="report-body">
+          <h3>Diagnosis</h3>
+          <p id="diagnosis"></p>
+          <h3>Buyer advice</h3>
+          <p id="buyerAdvice"></p>
+          <h3>Repair steps</h3>
+          <ol id="repairSteps"></ol>
+          <h3>Parts</h3>
+          <ul id="parts"></ul>
+        </div>
+      </div>
+
+      <div class="hash-plate">
+        <div><span>Leaf</span><code id="leafDigest"></code></div>
+        <div><span>Report hash</span><code id="reportHash"></code></div>
+        <div><span>Evidence CID</span><code id="evidenceCid"></code></div>
+        <div><span>Adapter</span><code id="adapterHash"></code></div>
+      </div>
+    </section>
+
+    <section class="panel" id="anchor">
+      <div class="section-head">
+        <h2>03 · Anchor &amp; verify</h2>
+        <p>Publish the Merkle root to OTS + EVM so a second-hand buyer can trust the VIN timeline.</p>
+      </div>
+      <div class="anchor-actions">
+        <button type="button" class="btn primary" id="btnAnchor">Anchor pending batch</button>
+        <button type="button" class="btn ghost" id="btnVerify" disabled>Verify last proof</button>
+        <span class="pending" id="pendingCount">0 pending</span>
+      </div>
+      <div class="hash-plate" id="anchorPlate" hidden>
+        <div><span>Merkle root</span><code id="merkleRoot"></code></div>
+        <div><span>OTS receipt</span><code id="otsId"></code></div>
+        <div><span>Chain tx</span><code id="chainTx"></code></div>
+      </div>
+      <div class="verify-grid" id="verifyGrid" hidden></div>
+    </section>
+  </main>
+
+  <div class="loader" id="loader" hidden>
+    <div class="loader-card">
+      <div class="spinner"></div>
+      <p id="loaderText">Running diagnosis…</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>VIN repair attestation · workshop seals · buyer verifies</span>
+    <a href="/docs" target="_blank" rel="noreferrer">API docs</a>
+  </footer>
+
+  <script src="/assets/app.js"></script>
+</body>
+</html>
