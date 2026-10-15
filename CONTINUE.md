@@ -32,12 +32,12 @@ See `artifacts/paper_results.json` and `docs/PAPER_DRAFT.md`.
 - Registry files: `artifacts/vin_registry/{VIN}.jsonl`
 - UI: **Buyer lookup** first, then workshop bay
 
-## Storage (best for this project)
+## Storage
 
-- **SQLite** app DB: `artifacts/por_registry.sqlite3` (VIN proofs, anchors) — Postgres-shaped, no Mongo needed
+- **PostgreSQL** app DB via the Node server (`DATABASE_URL`), or embedded PGlite in `artifacts/pglite/` when unset
 - **Evidence CAS files**: `artifacts/evidence/` (sha256 content ids)
 - **Chain / OTS**: Merkle roots only (integrity), not full reports
-- Legacy jsonl under `artifacts/vin_registry/` is auto-imported once if DB empty
+- Analytics tables loaded from `data/raw/` by `npm run etl` (see README)
 
 ## Optional next
 

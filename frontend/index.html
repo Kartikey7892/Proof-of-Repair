@@ -20,6 +20,7 @@
       <a href="#inspect">Workshop</a>
       <a href="#proof">Seal</a>
       <a href="#anchor">Anchor</a>
+      <a href="#insights">Insights</a>
     </nav>
     <div class="status-pill" id="healthPill">checking…</div>
     <div class="status-pill chain" id="chainPill">chain…</div>
@@ -37,6 +38,7 @@
       <div class="cta-row">
         <a class="btn primary" href="#lookup">Check a VIN</a>
         <a class="btn ghost" href="#inspect">Workshop bay</a>
+        <a class="btn ghost" href="#insights">Insights</a>
       </div>
     </section>
 
@@ -55,6 +57,7 @@
       <p class="hint" id="vinHint">Empty VIN = no attested repairs in this registry yet.</p>
       <div id="vinTrust" class="trust-banner" hidden></div>
       <div id="vinTimeline" class="timeline" hidden></div>
+      <div id="vinRisk" class="risk-panel" hidden></div>
     </section>
 
     <section class="panel" id="inspect">
@@ -86,8 +89,10 @@
           <label>
             <span>Engine</span>
             <select name="engine" id="engineSelect">
-              <option value="tinyllama" selected>TinyLlama LoRA (fast)</option>
-              <option value="mistral">Mistral 4-bit MLX</option>
+              <option value="auto" selected>Auto (best available)</option>
+              <option value="kb">Knowledge base · MechanicDB (instant)</option>
+              <option value="tinyllama">TinyLlama LoRA (sidecar)</option>
+              <option value="mistral">Mistral 4-bit MLX (sidecar)</option>
             </select>
           </label>
         </div>
@@ -104,7 +109,7 @@
 
         <div class="form-actions">
           <button type="submit" class="btn primary" id="btnDiagnose">Seal repair to VIN</button>
-          <p class="hint" id="formHint">First run loads the model (~30–90s on Apple Silicon).</p>
+          <p class="hint" id="formHint">Knowledge-base engine answers instantly; LoRA engines load the model on first run (~30–90s).</p>
         </div>
       </form>
     </section>
@@ -156,6 +161,99 @@
       </div>
       <div class="verify-grid" id="verifyGrid" hidden></div>
     </section>
+
+    <section class="panel wide" id="insights">
+      <div class="section-head">
+        <h2>04 · Insights</h2>
+        <p>Registry activity from PostgreSQL, plus analysis of the real datasets behind the models:
+          NHTSA owner complaints, MechanicDB repair knowledge, fine-tuning benchmarks and AI4I failure modes.</p>
+      </div>
+
+      <h3 class="sub-head">Registry</h3>
+      <div class="filter-row">
+        <label class="inline">
+          <span>Trend window</span>
+          <select id="daysSelect">
+            <option value="7">Last 7 days</option>
+            <option value="30" selected>Last 30 days</option>
+            <option value="90">Last 90 days</option>
+          </select>
+        </label>
+      </div>
+      <div class="kpi-row" id="kpiRow"></div>
+      <div class="viz-grid">
+        <article class="viz-card span-2" id="cardPerDay">
+          <header><h4>Repairs sealed per day</h4><button type="button" class="link-btn" data-table-toggle aria-pressed="false">Table</button></header>
+          <div class="viz-body"><div class="viz-canvas"><canvas id="chartPerDay" aria-label="Repairs sealed per day" role="img"></canvas></div><div class="viz-table"></div></div>
+        </article>
+        <article class="viz-card" id="cardCodes">
+          <header><h4>Top fault codes</h4><button type="button" class="link-btn" data-table-toggle aria-pressed="false">Table</button></header>
+          <div class="viz-body"><div class="viz-canvas"><canvas id="chartCodes" aria-label="Top fault codes" role="img"></canvas></div><div class="viz-table"></div></div>
+        </article>
+        <article class="viz-card" id="cardSeverity">
+          <header><h4>Severity mix</h4><button type="button" class="link-btn" data-table-toggle aria-pressed="false">Table</button></header>
+          <div class="viz-body"><div class="viz-canvas short"><canvas id="chartSeverity" aria-label="Severity mix" role="img"></canvas></div><div class="viz-table"></div></div>
+        </article>
+        <article class="viz-card span-2">
+          <header><h4>Diagnosis engines</h4></header>
+          <table class="data-table">
+            <thead><tr><th>Engine</th><th>Repairs</th><th>Avg confidence</th><th>Median latency</th></tr></thead>
+            <tbody id="engineTable"></tbody>
+          </table>
+        </article>
+      </div>
+
+      <h3 class="sub-head">NHTSA owner complaints</h3>
+      <div class="filter-row">
+        <label class="inline">
+          <span>Vehicle</span>
+          <select id="vehicleSelect"><option value="">All vehicles</option></select>
+        </label>
+        <p class="hint" id="nhtsaTotals"></p>
+      </div>
+      <div class="viz-grid">
+        <article class="viz-card" id="cardComponents">
+          <header><h4>Complaints by component</h4><button type="button" class="link-btn" data-table-toggle aria-pressed="false">Table</button></header>
+          <div class="viz-body"><div class="viz-canvas tall"><canvas id="chartComponents" aria-label="Complaints by component" role="img"></canvas></div><div class="viz-table"></div></div>
+        </article>
+        <article class="viz-card" id="cardYears">
+          <header><h4>Complaints by incident year</h4><button type="button" class="link-btn" data-table-toggle aria-pressed="false">Table</button></header>
+          <div class="viz-body"><div class="viz-canvas tall"><canvas id="chartYears" aria-label="Complaints by incident year" role="img"></canvas></div><div class="viz-table"></div></div>
+        </article>
+        <article class="viz-card span-2">
+          <header><h4>Where each model's complaints concentrate <small>% of that vehicle's complaints</small></h4></header>
+          <div class="heat-scroll" id="heatmap"></div>
+        </article>
+      </div>
+
+      <h3 class="sub-head">Models &amp; repair knowledge</h3>
+      <div class="viz-grid">
+        <article class="viz-card span-2" id="cardModels">
+          <header><h4>Fine-tuned models · real OBD hold-out (n=57)</h4><button type="button" class="link-btn" data-table-toggle aria-pressed="false">Table</button></header>
+          <div class="viz-body"><div class="viz-canvas"><canvas id="chartModels" aria-label="Model benchmark comparison" role="img"></canvas></div><div class="viz-table"></div></div>
+        </article>
+        <article class="viz-card span-2">
+          <header><h4>Most expensive first fixes · MechanicDB</h4></header>
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead><tr><th>Code</th><th>Most likely fix</th><th class="num">Parts</th><th class="num">Labor</th><th>Difficulty</th></tr></thead>
+              <tbody id="costTable"></tbody>
+            </table>
+          </div>
+        </article>
+        <article class="viz-card" id="cardWear">
+          <header><h4>Failure rate by tool wear · AI4I <small id="ai4iTotals"></small></h4><button type="button" class="link-btn" data-table-toggle aria-pressed="false">Table</button></header>
+          <div class="viz-body"><div class="viz-canvas"><canvas id="chartWear" aria-label="Failure rate by tool wear" role="img"></canvas></div><div class="viz-table"></div></div>
+        </article>
+        <article class="viz-card">
+          <header><h4>Data lineage</h4></header>
+          <table class="data-table">
+            <thead><tr><th>Dataset</th><th>Source</th><th class="num">Rows</th><th>SHA-256</th></tr></thead>
+            <tbody id="lineageTable"></tbody>
+          </table>
+        </article>
+      </div>
+    </section>
   </main>
 
   <div class="loader" id="loader" hidden>
@@ -170,6 +268,8 @@
     <a href="/docs" target="_blank" rel="noreferrer">API docs</a>
   </footer>
 
+  <script src="/vendor/chart.umd.js"></script>
+  <script src="/assets/insights.js"></script>
   <script src="/assets/app.js"></script>
 </body>
 </html>

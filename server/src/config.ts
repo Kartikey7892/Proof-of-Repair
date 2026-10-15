@@ -10,13 +10,16 @@ if (existsSync(envFile)) process.loadEnvFile(envFile);
 
 const env = (k: string, d = "") => (process.env[k] ?? d).trim();
 
+/** Runtime state (evidence blobs, OTS receipts, simulator ledger, embedded DB). */
+const artifactsDir = env("ARTIFACTS_DIR", path.join(ROOT, "artifacts"));
+
 export const config = {
   port: Number(env("PORT", "8000")),
   host: env("HOST", "127.0.0.1"),
   /** postgres://user:pass@host:5432/db — when unset, an embedded PGlite Postgres is used. */
   databaseUrl: env("DATABASE_URL"),
-  pgliteDir: env("PGLITE_DIR", path.join(ROOT, "artifacts", "pglite")),
-  artifactsDir: path.join(ROOT, "artifacts"),
+  pgliteDir: env("PGLITE_DIR", path.join(artifactsDir, "pglite")),
+  artifactsDir,
   dataDir: path.join(ROOT, "data"),
   frontendDir: path.join(ROOT, "frontend"),
   chainConfig: env("CHAIN_CONFIG", path.join(ROOT, "artifacts", "chain_config.json")),

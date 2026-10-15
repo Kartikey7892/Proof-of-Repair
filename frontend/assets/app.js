@@ -29,6 +29,11 @@
     if (text) loaderText.textContent = text;
   }
 
+  // Report text comes from models / user input — never inject it as raw HTML.
+  function esc(s) {
+    return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  }
+
   function short(hex, n = 18) {
     if (!hex) return "—";
     return hex.length > n ? `${hex.slice(0, n)}…` : hex;
@@ -49,14 +54,17 @@
       const res = await fetch("/api/health");
       const data = await res.json();
       const engines = data.engines || {};
-      healthPill.textContent = `api ok · tinyllama ${engines.tinyllama ? "ready" : "missing"} · mistral ${engines.mistral ? "ready" : "missing"} · ${data.storage?.backend || "db"}`;
+      const ready = Object.entries(engines).filter(([, ok]) => ok).map(([n]) => n);
+      healthPill.textContent = `api ok · engines ${ready.join(", ") || "none"} · ${data.storage?.backend || "db"}`;
+      healthPill.title = `proofs ${data.storage?.proofs ?? 0} · VINs ${data.storage?.vins ?? 0} · anchors ${data.storage?.anchors ?? 0}`;
       healthPill.classList.add("ok");
       pending = data.pending_leaves || 0;
       pendingCount.textContent = `${pending} pending`;
-      if (!engines.mistral) {
-        const opt = engineSelect.querySelector('option[value="mistral"]');
-        if (opt) opt.disabled = true;
-      }
+      ["kb", "tinyllama", "mistral"].forEach((name) => {
+        const opt = engineSelect.querySelector(`option[value="${name}"]`);
+        if (opt) opt.disabled = !engines[name];
+      });
+      if (engineSelect.selectedOptions[0]?.disabled) engineSelect.value = "auto";
       const chain = data.chain || {};
       if (chainPill) {
         if (chain.mode === "live_evm") {
@@ -139,25 +147,30 @@
         item.className = `tl-item${ev.anchored ? " anchored" : ""}`;
         item.style.animationDelay = `${i * 0.06}s`;
         const parts = (ev.parts || [])
-          .map((p) => `<li>${p}</li>`)
+          .map((p) => `<li>${esc(p)}</li>`)
           .join("");
         const badge = ev.anchored
           ? `<span class="tl-badge on">anchored</span>`
           : `<span class="tl-badge">sealed</span>`;
         item.innerHTML = `
           <div class="tl-head">
-            <span class="tl-code">${ev.fault_code || "—"}</span>
+            <span class="tl-code">${esc(ev.fault_code || "—")}</span>
             ${badge}
-            <span class="tl-meta">${formatWhen(ev.when)} · ${ev.odometer_km ?? "—"} km · ${ev.issuer_id || "workshop"}</span>
+            <span class="tl-meta">${esc(formatWhen(ev.when))} · ${esc(ev.odometer_km ?? "—")} km · ${esc(ev.issuer_id || "workshop")} · ${esc(ev.vehicle || "")}</span>
           </div>
-          <p class="tl-body">${ev.diagnosis || ""}</p>
+          <p class="tl-body">${esc(ev.diagnosis || "")}</p>
           ${parts ? `<ul class="tl-parts">${parts}</ul>` : ""}
-          <p class="tl-meta" style="margin-top:0.45rem">leaf ${short(ev.leaf_digest, 20)}${ev.anchor?.merkle_root ? ` · root ${short(ev.anchor.merkle_root, 16)}` : ""}</p>
+          <p class="tl-meta" style="margin-top:0.45rem">leaf ${esc(short(ev.leaf_digest, 20))}${ev.anchor?.merkle_root ? ` · root ${esc(short(ev.anchor.merkle_root, 16))}` : ""}</p>
         `;
         vinTimeline.appendChild(item);
       });
       if (!(data.timeline || []).length) {
         vinTimeline.innerHTML = `<p class="hint">No sealed repairs for this VIN in the local registry.</p>`;
+      }
+      // Known-issue profile for this model from NHTSA complaints (analytics API).
+      const latest = (data.timeline || []).at(-1);
+      if (window.PorInsights) {
+        window.PorInsights.renderVehicleRisk(latest?.vehicle || "", document.getElementById("vinRisk"));
       }
       if (scroll) {
         document.getElementById("lookup").scrollIntoView({ behavior: "smooth" });
@@ -263,7 +276,8 @@
       }
       const data = await res.json();
       renderReport(data);
-      $("#formHint").textContent = "Sealed to VIN. Anchor the batch, then buyer can look it up.";
+      window.PorInsights?.refresh("overview");
+      $("#formHint").textContent = `Sealed to VIN by ${data.engine}${data.diagnosis_ms != null ? ` in ${data.diagnosis_ms} ms` : ""}. Anchor the batch, then buyer can look it up.`;
       if (body.vin) {
         vinForm.elements.vin.value = body.vin;
         lookupVin(body.vin, { scroll: false });
@@ -302,7 +316,7 @@
       $("#chainTx").textContent = typeof txHash === "string" ? txHash : JSON.stringify(txHash);
       lastChainTx = tx;
       if (tx.explorer_url) {
-        $("#chainTx").innerHTML = `<a href="${tx.explorer_url}" target="_blank" rel="noreferrer">${tx.tx_hash}</a>`;
+        $("#chainTx").innerHTML = `<a href="${esc(tx.explorer_url)}" target="_blank" rel="noreferrer">${esc(tx.tx_hash)}</a>`;
       }
       if (tx.mode === "live_evm") {
         $("#formHint").textContent = `Anchored on ${tx.network} (chainId ${tx.chain_id}) in block ${tx.block_number}.`;
@@ -311,6 +325,7 @@
       pendingCount.textContent = "0 pending";
       btnVerify.disabled = !lastProof;
       refreshHealth();
+      window.PorInsights?.refresh("overview");
       if (lastLookupVin || lastProof?.vin) {
         lookupVin(lastLookupVin || lastProof.vin, { scroll: false });
       }

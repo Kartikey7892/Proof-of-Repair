@@ -19,11 +19,19 @@ device_id || report_hash || evidence_cid || model_provenance || issuer || timest
 
 SHA-256 of the canonical serialization is the **leaf digest**.
 
-### C. Cloud Evidence Store (`src/cloud/`)
+### C. Cloud API, Registry & Evidence Store (`server/`)
 
-- Writes repair photos / logs / JSON reports to content-addressed paths
-- Returns `cid = sha256(bytes)` (IPFS-compatible abstraction)
-- FastAPI service (`api.py`) for create / get / verify endpoints
+- Node.js + Express (TypeScript) service exposing the `/api/*` endpoints
+- PostgreSQL registry (`server/src/db/`): proofs, Merkle anchors, per-proof inclusion proofs, evidence metadata
+- Writes repair photos / logs / JSON reports to content-addressed paths; `cid = sha256(bytes)` (IPFS-compatible abstraction)
+- Crypto (`server/src/crypto/`, `server/src/por/`) is byte-compatible with the Python reference in `src/`
+- Diagnosis engines: built-in MechanicDB knowledge base, or the LoRA models via the Python sidecar `ml/inference_server.py`
+
+### F. Data Analysis (`server/src/analytics/`)
+
+- ETL loads NHTSA complaints, MechanicDB, automotive-dtc-finetune labels, AI4I 2020 and model benchmarks into PostgreSQL, fingerprinted in `etl_runs`
+- SQL analytics: registry KPIs and trends, complaint mix by component / vehicle, buyer risk lift vs fleet, repair cost knowledge, failure modes
+- Rendered in the web UI's Insights section and the buyer VIN lookup
 
 ### D. Blockchain Anchoring (`src/blockchain/`)
 

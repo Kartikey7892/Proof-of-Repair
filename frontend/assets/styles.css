@@ -12,6 +12,12 @@
   --font-brand: "Archivo Black", sans-serif;
   --font-body: "Manrope", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  /* Data-viz roles — validated against the chart surface (--bg-2) */
+  --viz-1: #c98500;   /* single series (amber step in the lightness band) */
+  --viz-s1: #3987e5;  /* series 1 of 2+ */
+  --viz-s2: #d95926;  /* series 2 of 2+ */
+  --viz-grid: #232a2f;
+  --viz-axis: #38403d;
 }
 
 *,
@@ -660,5 +666,325 @@ footer a {
   .status-pill.chain,
   .status-pill.ots {
     max-width: 100%;
+  }
+}
+
+/* ------------------------------------------------------------------ Insights */
+.panel.wide {
+  max-width: 1240px;
+}
+
+.sub-head {
+  margin: 2.25rem 0 0.85rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+label.inline {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 220px;
+}
+
+label.inline select {
+  padding: 0.55rem 0.7rem;
+}
+
+.kpi-row {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin-bottom: 1rem;
+}
+
+.kpi {
+  display: grid;
+  gap: 0.2rem;
+  padding: 1rem 1.1rem;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+}
+
+.kpi-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.kpi-value {
+  font-family: var(--font-body);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.kpi-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.viz-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.viz-card {
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  padding: 1rem 1.1rem 1.1rem;
+  min-width: 0;
+}
+
+.viz-card.span-2 {
+  grid-column: 1 / -1;
+}
+
+.viz-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.viz-card h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.viz-card h4 small {
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 0.4rem;
+}
+
+.link-btn {
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  padding: 0.2rem 0;
+}
+
+.link-btn:hover,
+.link-btn[aria-pressed="true"] {
+  color: var(--amber);
+}
+
+.viz-canvas {
+  position: relative;
+  height: 220px;
+}
+
+.viz-canvas.short {
+  height: 160px;
+}
+
+.viz-canvas.tall {
+  height: 300px;
+}
+
+.viz-table {
+  display: none;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.viz-card.show-table .viz-canvas {
+  display: none;
+}
+
+.viz-card.show-table .viz-table {
+  display: block;
+}
+
+.viz-empty {
+  margin: 0 0 0.5rem;
+}
+
+.viz-table table,
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.viz-table th,
+.viz-table td,
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.viz-table th,
+.data-table th {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.data-table td.num,
+.data-table th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.data-table td.mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--steel);
+}
+
+.table-scroll,
+.heat-scroll {
+  overflow-x: auto;
+}
+
+table.heat {
+  border-collapse: separate;
+  border-spacing: 2px;
+  font-size: 0.75rem;
+  min-width: 640px;
+}
+
+table.heat th {
+  font-weight: 500;
+  color: var(--muted);
+  text-align: left;
+  font-size: 0.68rem;
+  padding: 0.3rem 0.4rem;
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+table.heat tbody th {
+  color: var(--ink);
+  font-size: 0.75rem;
+  max-width: 220px;
+}
+
+table.heat td {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  padding: 0.45rem 0.3rem;
+  border-radius: 3px;
+  min-width: 56px;
+}
+
+table.heat td:hover,
+table.heat td:focus {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+table.heat td.heat-empty {
+  color: var(--line);
+}
+
+#insights.refreshing .viz-card,
+#insights.refreshing .kpi-row {
+  opacity: 0.55;
+  transition: opacity 0.2s;
+}
+
+/* Buyer risk profile (under the VIN timeline) */
+.risk-panel {
+  margin-top: 1.5rem;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  padding: 1rem 1.1rem;
+  animation: rise 0.45s ease both;
+}
+
+.risk-panel h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.risk-bars {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0.85rem 0 0.5rem;
+}
+
+.risk-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 210px) 1fr 52px 84px;
+  gap: 0.75rem;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.risk-name {
+  color: var(--steel);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.risk-track {
+  height: 8px;
+  background: #0a0c0e;
+}
+
+.risk-fill {
+  display: block;
+  height: 100%;
+  background: var(--viz-1);
+  border-radius: 0 4px 4px 0;
+}
+
+.risk-val,
+.risk-lift {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-align: right;
+}
+
+.risk-lift.hot {
+  color: var(--amber);
+}
+
+@media (max-width: 820px) {
+  .viz-grid {
+    grid-template-columns: 1fr;
+  }
+  .risk-row {
+    grid-template-columns: minmax(90px, 1fr) 1fr 44px;
+  }
+  .risk-lift {
+    display: none;
   }
 }

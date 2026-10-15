@@ -67,10 +67,11 @@ class PgliteDb implements Db {
   }
 }
 
-export async function openDb(opts: { url?: string; pgliteDir?: string } = {}): Promise<Db> {
+export async function openDb(opts: { url?: string; pgliteDir?: string; poolMax?: number } = {}): Promise<Db> {
   let db: Db;
   if (opts.url) {
-    db = new PgDb(new pg.Pool({ connectionString: opts.url, max: 10 }), opts.url);
+    const max = opts.poolMax ?? (Number(process.env.PG_POOL_MAX) || 10);
+    db = new PgDb(new pg.Pool({ connectionString: opts.url, max }), opts.url);
   } else {
     const { PGlite } = await import("@electric-sql/pglite");
     const dir = opts.pgliteDir ?? "memory://";

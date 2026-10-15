@@ -1,0 +1,22 @@
+# Local PostgreSQL for the Node backend.
+#   docker compose up -d
+#   DATABASE_URL=postgres://por:por@127.0.0.1:5432/por   (see .env.example)
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: por
+      POSTGRES_PASSWORD: por
+      POSTGRES_DB: por
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - por_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U por -d por"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  por_pgdata:
