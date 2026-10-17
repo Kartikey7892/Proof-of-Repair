@@ -39,6 +39,19 @@ const server = app.listen(config.port, config.host, () => {
   console.log(`[api] Proof of Repair on http://${config.host}:${config.port}  (docs: /docs)`);
 });
 
+server.on("error", async (err: NodeJS.ErrnoException) => {
+  if (err.code === "EADDRINUSE") {
+    console.error(
+      `\n[api] Port ${config.port} is already in use — another copy of the server is probably still running.\n` +
+        `      Stop it (Ctrl+C in its terminal), or start this one on another port, e.g. set PORT=8001 in .env.\n`,
+    );
+  } else {
+    console.error("[api] server error:", err);
+  }
+  await db.close();
+  process.exit(1);
+});
+
 // Pending OpenTimestamps receipts usually confirm in Bitcoin within hours.
 const otsTimer = setInterval(
   () => void upgradePendingOts(registry, anchoring).catch((e) => console.warn(`[ots] ${e.message}`)),
