@@ -1,7 +1,7 @@
 #!/bin/bash
 # Paper main: TinyLlama LoRA on DTC-primary disjoint split
 set -e
-cd "/Users/shivansh/Desktop/proof of repair"
+cd "$(dirname "$0")/.."
 source .venv/bin/activate
 export PYTHONUNBUFFERED=1
 

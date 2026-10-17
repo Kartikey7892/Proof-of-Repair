@@ -4,7 +4,7 @@
 
 ### A. LLM Diagnosis Layer (`src/llm/`)
 
-- `prepare_dataset.py` — builds SFT JSONL from SARC (+ optional CMAPSS)
+- `prepare_dataset.py` — builds SFT JSONL from the real OBD / DTC / NHTSA datasets
 - `finetune_lora.py` — PEFT/LoRA training + provenance logging
 - `infer.py` — loads adapter (or heuristic fallback) → `RepairReport`
 - `evaluate.py` — fault-code / JSON / ROUGE metrics
@@ -39,7 +39,7 @@ SHA-256 of the canonical serialization is the **leaf digest**.
 2. **OpenTimestamps-style** calendar simulator issues a receipt  
 3. **EVM contract** `ProofOfRepair.sol` stores Merkle roots by batch id  
 
-### E. Smart Contract (`contracts/ProofOfRepair.sol`)
+### E. Smart Contract (`chain/contracts/ProofOfRepair.sol`)
 
 ```
 anchorMerkleRoot(bytes32 root, string batchId, string metaURI)

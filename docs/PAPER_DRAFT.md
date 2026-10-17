@@ -61,7 +61,7 @@ Symptoms / DTC  →  LoRA LLM  →  RepairReport JSON
                          Buyer verify_full()
 ```
 
-Implementation: `src/llm/`, `src/por/`, `src/blockchain/`, `contracts/ProofOfRepair.sol`, `scripts/run_demo.py`.
+Implementation: `src/llm/`, `src/por/`, `src/blockchain/`, `chain/contracts/ProofOfRepair.sol`, `scripts/run_demo.py`.
 
 ---
 

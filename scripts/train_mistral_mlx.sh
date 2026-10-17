@@ -1,7 +1,7 @@
 #!/bin/bash
 # Mistral-7B-Instruct 4bit MLX LoRA only (local weights, offline)
 set -e
-cd "/Users/shivansh/Desktop/proof of repair"
+cd "$(dirname "$0")/.."
 source .venv/bin/activate
 export PYTHONUNBUFFERED=1
 export HF_HUB_OFFLINE=1

@@ -55,4 +55,4 @@ Optional retrain: `scripts/train_improved.sh` (TinyLlama) or `scripts/train_mist
 
 - `artifacts/vehicle_batch_manifest.json` — Merkle batch + VIN proofs  
 - `artifacts/eval_metrics.json` — hold-out metrics  
-- `contracts/ProofOfRepair.sol` — on-chain root registry  
+- `chain/contracts/ProofOfRepair.sol` — on-chain root registry  

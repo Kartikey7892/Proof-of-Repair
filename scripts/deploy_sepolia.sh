@@ -1,7 +1,7 @@
 #!/bin/bash
 # Deploy ProofOfRepair to Sepolia (needs funded key + RPC in .env)
 set -e
-ROOT="/Users/shivansh/Desktop/proof of repair"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 if [ ! -f .env ]; then
   echo "Create .env from .env.example with SEPOLIA_RPC_URL and DEPLOYER_PRIVATE_KEY"
@@ -19,4 +19,4 @@ cd chain
 npx hardhat compile
 npx hardhat run scripts/deploy.js --network sepolia
 echo "Sepolia deploy written to artifacts/chain_config.json"
-echo "Restart API: bash scripts/run_ui.sh"
+echo "Restart the server: cd server && npm start"

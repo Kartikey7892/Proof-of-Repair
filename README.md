@@ -5,6 +5,20 @@ Verifiable repair history for **used-car buyers**: OBD/DTC diagnosis → worksho
 
 ---
 
+## Project structure
+
+| Folder | Language | What it is |
+|--------|----------|------------|
+| **`server/`** | **TypeScript (Node.js + Express)** | **The web app backend.** `npm start` runs `server/src/server.ts`. |
+| `frontend/` | HTML / CSS / JS | The website, served by the Node server |
+| `chain/` | Solidity + Hardhat | The `ProofOfRepair` smart contract and its deploy script |
+| `data/` | — | Datasets: `raw/` feeds the app's analytics; `processed/` and `mlx/` are model-training splits |
+| `artifacts/` | — | Benchmark results and dataset manifests; runtime files (evidence, receipts) are written here too |
+| `docs/` | — | Architecture, research paper draft and report |
+| `src/`, `tests/`, `ml/`, `scripts/` | Python + shell | **Model training & research only.** The website never runs these (see [`src/README.md`](src/README.md)). |
+
+---
+
 ## Who it is for
 
 People buying a second-hand vehicle who need cryptographic proof that:
@@ -170,4 +184,4 @@ python ml/inference_server.py
 
 Each leaf commits: `VIN + vehicle + odometer + report_hash + evidence_cid + model provenance`.
 
-Raw invoices/photos stay off-chain (CID). Only Merkle roots go on-chain (`contracts/ProofOfRepair.sol`).
+Raw invoices/photos stay off-chain (CID). Only Merkle roots go on-chain (`chain/contracts/ProofOfRepair.sol`).

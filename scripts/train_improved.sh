@@ -1,7 +1,7 @@
 #!/bin/bash
 # Longer TinyLlama LoRA (2 epochs) + optional MLX Mistral-4bit LoRA
 set -e
-cd "/Users/shivansh/Desktop/proof of repair"
+cd "$(dirname "$0")/.."
 source .venv/bin/activate
 export PYTHONUNBUFFERED=1
 
